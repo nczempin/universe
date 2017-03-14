@@ -19,8 +19,8 @@ rather than a list of observations), turn it into a vectorized environment with 
         assert self.metadata.get('runtime.vectorized')
         self.n = 1
 
-    def _reset(self):
-        observation = self.env.reset()
+    def _reset(self, **kwargs):
+        observation = self.env.reset(**kwargs)
         return [observation]
 
     def _step(self, action):
@@ -33,7 +33,7 @@ rather than a list of observations), turn it into a vectorized environment with 
 class Unvectorize(core.Wrapper):
     """
 Take a vectorized environment with a batch of size 1 and turn it into an unvectorized environment.
-""" 
+"""
     autovectorize = False
     metadata = {'runtime.vectorized': False}
 
@@ -42,8 +42,8 @@ Take a vectorized environment with a batch of size 1 and turn it into an unvecto
         if self.n != 1:
             raise error.Error('Can only disable vectorization with n=1, not n={}'.format(self.n))
 
-    def _reset(self):
-        observation_n = self.env.reset()
+    def _reset(self, **kwargs):
+        observation_n = self.env.reset(**kwargs)
         return observation_n[0]
 
     def _step(self, action):

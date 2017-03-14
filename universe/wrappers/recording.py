@@ -93,7 +93,7 @@ env.configure(recording_dir='/path/to/results', recording_policy='capped_cubic')
             self._log_n[i] = RecordingWriter(self._recording_dir, self._instance_id, i)
         return self._log_n[i]
 
-    def _reset(self):
+    def _reset(self, **kwargs):
         for i in range(self.n):
             writer = self._get_writer(i)
             if writer is not None:
@@ -102,7 +102,7 @@ env.configure(recording_dir='/path/to/results', recording_policy='capped_cubic')
                     self._recording_notes = None
                 writer(type='reset', timestamp=time.time())
 
-        return self.env.reset()
+        return self.env.reset(**kwargs)
 
     def _step(self, action_n):
         observation_n, reward_n, done_n, info = self.env.step(action_n)

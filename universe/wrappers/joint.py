@@ -35,12 +35,12 @@ class Joint(vectorized.Wrapper):
         self.metadata = self.metadata.copy()
         self.metadata['render.modes'] = self.env_m[0].metadata['render.modes']
 
-    def _reset(self):
+    def _reset(self, **kwargs):
         # Keep all env[0] action on the main thread, in case we ever
         # need to render. Otherwise we get segfaults from the
         # go-vncdriver.
-        reset_m_async = self.pool.map_async(lambda env: env.reset(), self.env_m[1:])
-        reset = self.env_m[0].reset()
+        reset_m_async = self.pool.map_async(lambda env: env.reset(**kwargs), self.env_m[1:])
+        reset = self.env_m[0].reset(**kwargs)
         reset_m = [reset] + reset_m_async.get()
 
         observation_n = []

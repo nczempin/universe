@@ -25,8 +25,8 @@ class VectorizeFilter(core.Wrapper):
         super(VectorizeFilter, self)._configure(**kwargs)
         self.filter_n = [self.filter_factory(*self._args, **self._kwargs) for _ in range(self.n)]
 
-    def _reset(self):
-        observation_n = self.env.reset()
+    def _reset(self, **kwargs):
+        observation_n = self.env.reset(**kwargs)
         observation_n = [filter._after_reset(observation) for filter, observation in zip(self.filter_n, observation_n)]
         return observation_n
 

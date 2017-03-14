@@ -19,8 +19,8 @@ class RemoveNones(vectorized.Wrapper):
         super(RemoveNones, self).__init__(env)
         self.plausible_observation = None
 
-    def _reset(self):
-        observation_n = self.env.reset()
+    def _reset(self, **kwargs):
+        observation_n = self.env.reset(**kwargs)
         self.plausible_observation = observation_n[0]
         return observation_n
 
@@ -31,8 +31,8 @@ class RemoveNones(vectorized.Wrapper):
 
 class EpisodeID(vectorized.Wrapper):
     """
-For each episode, return its id, and also return the total number of contiguous 
-episodes that are now done. 
+For each episode, return its id, and also return the total number of contiguous
+episodes that are now done.
 """
     def _configure(self, episode_limit=None, **kwargs):
         super(EpisodeID, self)._configure(**kwargs)
@@ -54,9 +54,9 @@ episodes that are now done.
             else:
                 break
 
-    def _reset(self):
+    def _reset(self, **kwargs):
         self._clear_state()
-        return self.env.reset()
+        return self.env.reset(**kwargs)
 
     def _step(self, action_n):
         observation_n, reward_n, done_n, info = self.env.step(action_n)

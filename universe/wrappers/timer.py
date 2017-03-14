@@ -10,9 +10,9 @@ Calcultae how much time was spent actually doing work.  Display result
 via pyprofile.
 """
 
-    def _reset(self):
+    def _reset(self, **kwargs):
         with pyprofile.push('vnc_env.Timer.reset'):
-            return self.env.reset()
+            return self.env.reset(**kwargs)
 
     def _step(self, action_n):
         start = time.time()
