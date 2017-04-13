@@ -174,13 +174,13 @@ register(
 )
 
 # gym-core.Atari
-for game in ['air_raid', 'alien', 'amidar', 'assault', 'asterix',
+for game in ['adventure', 'air_raid', 'alien', 'amidar', 'assault', 'asterix',
              'asteroids', 'atlantis', 'bank_heist', 'battle_zone',
              'beam_rider', 'berzerk', 'bowling', 'boxing', 'breakout',
              'carnival', 'centipede', 'chopper_command', 'crazy_climber',
              'demon_attack', 'double_dunk', 'elevator_action', 'enduro',
              'fishing_derby', 'freeway', 'frostbite', 'gopher', 'gravitar',
-             'ice_hockey', 'jamesbond', 'journey_escape', 'kangaroo', 'krull',
+             'ice_hockey', 'jamesbond', 'journey_escape', 'kaboom', 'kangaroo', 'krull',
              'kung_fu_master', 'montezuma_revenge', 'ms_pacman',
              'name_this_game', 'phoenix', 'pitfall', 'pong', 'pooyan',
              'private_eye', 'qbert', 'riverraid', 'road_runner', 'robotank',
